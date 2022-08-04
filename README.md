@@ -10,6 +10,9 @@ Json format:
  
  Front image files should be placed in data/images
  Side logo image files should be placed in data/sides
+ Background image and main logo files should be placed in root directory.
  The result images are placed in build/images
+ Required data: background image, main front image, company logo image, side logo image, title1, title2 (may be blank), synthesis.json
+ 
  The result is png file format.
  It is possible for some settings to be changed in config.js
