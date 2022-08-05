@@ -1,3 +1,22 @@
 [
-{"image":"1.png", "sidelogo": "side_logo1.png", "title1":"ERFOLGREICHE", "title2":"TELEFONAKQUISE"}
+  {
+    "image": "1.png",
+    "sidelogo": "side_logo1.png",
+    "title1": "ERFOLGREICHE",
+    "font1": 70,
+    "title2": "TELEFONAKQUISE",
+    "font2": 64,
+    "font3": 80,
+    "font4": 60
+  },
+  {
+    "image": "2.png",
+    "sidelogo": "side_logo2.png",
+    "title1": "Thisasdflkjasdfsadfsf",
+    "font1": 44,
+    "title2": "ljklajfaiofas",
+    "font2": 70,
+    "font3": 50,
+    "font4": 60
+  }
 ]

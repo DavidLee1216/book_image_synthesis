@@ -12,13 +12,6 @@ const backgroundSetting = {
   smoothing: true,
 };
 
-const textArea = {
-  width: 400,
-  height: 200,
-  d_width: 700,
-  d_height: 350,
-};
-
 const text1Setting = {
   color: "#000000",
   size: 70,
@@ -40,16 +33,6 @@ const text2Setting = {
   weight: "bold",
   family: "Bahnschrift",
   spacing: -1,
-};
-const titlePosSetting = {
-  x1: 72,
-  y1: 1217,
-  x2: 820,
-  y2: 1197,
-  x3: 62,
-  y3: 1426,
-  x4: 820,
-  y4: 1435,
 };
 const text3Setting = {
   color: "#ffffff",
@@ -99,8 +82,6 @@ module.exports = {
   text2Setting,
   text3Setting,
   text4Setting,
-  titlePosSetting,
   backgroundSetting,
   sideLogoSetting,
-  textArea,
 };

@@ -14,10 +14,8 @@ const {
   text2Setting,
   text3Setting,
   text4Setting,
-  titlePosSetting,
   backgroundSetting,
   sideLogoSetting,
-  textArea,
 } = require(`${basePath}/src/config.js`);
 const jsonData = require(`${dataDir}/synthesis.json`);
 const canvas = createCanvas(backgroundSetting.width, backgroundSetting.height);
@@ -68,7 +66,7 @@ const loadLayerImg = async (filename) => {
   }
 };
 
-const addText = async (
+const addText = (
   textSetting1,
   text1,
   x1,
@@ -134,13 +132,13 @@ const addText = async (
   }
 };
 
-const addRotatedText = (text, _sig, x, y, size, degree) => {
-  ctx.fillStyle = text.color;
-  ctx.font = `${text.weight} ${size}pt ${text.family}`;
-  ctx.textBaseline = text.baseline;
-  ctx.textAlign = text.align;
+const addRotatedText = (textSetting, _sig, size, degree) => {
+  ctx.fillStyle = textSetting.color;
+  ctx.font = `${textSetting.weight} ${size}pt ${textSetting.family}`;
+  ctx.textBaseline = textSetting.baseline;
+  ctx.textAlign = textSetting.align;
   ctx.save();
-  ctx.translate(text.xPos, text.yPos);
+  ctx.translate(textSetting.xPos, textSetting.yPos);
   ctx.rotate((2 * Math.PI * degree) / 360);
   ctx.transform(1, 0.0, -0.02, 0.8, 0, 0);
   ctx.fillText(_sig, 0, 0);
@@ -220,76 +218,61 @@ const startCreating = async () => {
   backgroundElement.then((backgroundImage) => {
     logoElement.then((logoImage) => {
       files.forEach((filename) => {
-        let title1 = "";
-        let title2 = "";
+        ctx.clearRect(0, 0, backgroundSetting.width, backgroundSetting.height);
         let sideLogoPath = "";
         let synthesisData = jsonData.filter((v) => v.image === filename);
         if (synthesisData.length > 0) {
-          title1 = synthesisData[0].title1;
-          title2 = synthesisData[0].title2;
-          title3 =
-            title1.charAt(0).toUpperCase() + title1.slice(1).toLowerCase();
-          title4 =
-            title2.charAt(0).toUpperCase() + title2.slice(1).toLowerCase();
           sideLogoPath = `${sideLogoDir}/${synthesisData[0].sidelogo}`;
         }
         let loadedElement = loadLayerImg(`${imagesDir}/${filename}`);
+        let sideLogoElement = loadLayerImg(sideLogoPath);
         loadedElement.then((image) => {
-          ctx.clearRect(
-            0,
-            0,
-            backgroundSetting.width,
-            backgroundSetting.height
-          );
-          drawBackground(backgroundImage);
-          drawFrontImage(image);
-          drawLogo(logoImage);
-          addText(
-            text1Setting,
-            title1,
-            text1Setting.xPos,
-            text1Setting.yPos,
-            text1Setting.size,
-            text2Setting,
-            title2,
-            text2Setting.xPos,
-            text2Setting.yPos,
-            text2Setting.size
-          );
-          // addText(
-          //   text2Setting,
-          //   title2,
-          //   text2Setting.xPos,
-          //   text2Setting.yPos,
-          //   text2Setting.size,
-          //   -0.008
-          // );
-          addRotatedText(
-            text3Setting,
-            title3,
-            text3Setting.xPos,
-            text3Setting.yPos,
-            text3Setting.size,
-            -90
-          );
-          addRotatedText(
-            text4Setting,
-            title4,
-            text4Setting.xPos,
-            text4Setting.yPos,
-            text4Setting.size,
-            -90
-          );
-          let sideLogoElement = loadLayerImg(sideLogoPath);
-          sideLogoElement
-            .then((sidelogo) => {
-              drawSideLogo(sidelogo);
-              saveImage(filename);
-            })
-            .catch((error) => {
-              alert("can not find side log file " + sideLogoPath);
-              saveImage(filename);
-            });
+          sideLogoElement.then((sidelogo) => {
+            let title1 = "";
+            let title2 = "";
+            let synthesisData = jsonData.filter((v) => v.image === filename);
+            if (synthesisData.length > 0) {
+              title1 = synthesisData[0].title1.toUpperCase();
+              title2 = synthesisData[0].title2.toUpperCase();
+              title3 =
+                title1.charAt(0).toUpperCase() + title1.slice(1).toLowerCase();
+              title4 =
+                title2.charAt(0).toUpperCase() + title2.slice(1).toLowerCase();
+            }
+            drawBackground(backgroundImage);
+            drawFrontImage(image);
+            drawLogo(logoImage);
+            addText(
+              text1Setting,
+              title1,
+              text1Setting.xPos,
+              text1Setting.yPos,
+              synthesisData[0].font1,
+              text2Setting,
+              title2,
+              text2Setting.xPos,
+              text2Setting.yPos,
+              synthesisData[0].font2
+            );
+            addRotatedText(
+              text3Setting,
+              title3,
+              synthesisData[0].font3 !== undefined
+                ? synthesisData[0].font3
+                : text3Setting.size,
+              -90
+            );
+            addRotatedText(
+              text4Setting,
+              title4,
+              synthesisData[0].font4 !== undefined
+                ? synthesisData[0].font4
+                : text4Setting.size,
+              -90
+            );
+            drawSideLogo(sidelogo);
+            saveImage(filename);
+          });
         });
       });
     });
