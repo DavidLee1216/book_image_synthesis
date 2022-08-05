@@ -100,7 +100,7 @@ const addText = (
     x = i == 0 ? x : x + prev_w + textSetting1.spacing;
     y = i == 0 ? y1 : base_y - h - i * 0.5;
     prev_w = w;
-    ctx.transform(1, -0.02, -0.01, 1, x, y);
+    ctx.transform(1, -0.02, -0.1, 1, x, y);
     ctx.fillText(letters[i], 0, 0);
     ctx.restore();
   }
@@ -126,7 +126,7 @@ const addText = (
     x = i == 0 ? x : x + prev_w + textSetting2.spacing;
     y = i == 0 ? y2 : base_y - i * 0.3;
     prev_w = w;
-    ctx.transform(1, 0.01, -0.01, 1, x, y);
+    ctx.transform(1, 0.01, -0.1, 1, x, y);
     ctx.fillText(letters[i], 0, 0);
     ctx.restore();
   }
@@ -140,7 +140,7 @@ const addRotatedText = (textSetting, _sig, size, degree) => {
   ctx.save();
   ctx.translate(textSetting.xPos, textSetting.yPos);
   ctx.rotate((2 * Math.PI * degree) / 360);
-  ctx.transform(1, 0.0, -0.02, 0.8, 0, 0);
+  ctx.transform(1, 0.0, -0.1, 0.8, 0, 0);
   ctx.fillText(_sig, 0, 0);
   ctx.restore();
 };
