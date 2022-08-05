@@ -5,7 +5,17 @@ First of all, add data for individual images and titles to synthesis.json under 
 
 Json format:
  
- ex: {"image":"1.png", "sidelogo": "side_logo1.png", "title1":"ERFOLGREICHE", "title2":"TELEFONAKQUISE"}
+ ex:   {
+    "image": "1.png",
+    "sidelogo": "side_logo1.png",
+    "title1": "ERFOLGREICHE",
+    "font1": 70,
+    "title2": "TELEFONAKQUISE",
+    "font2": 64,
+    "font3": 80,
+    "font4": 60
+  }
+
  
  "image": main front image
  
@@ -14,6 +24,15 @@ Json format:
  "title1": title string in the first line
  
  "title2": title string in the second line
+ 
+ "font1": font for title1
+ 
+ "font2": font for title2
+ 
+ "font3": font for upper side title (could be omitted, then use default size for side title on config.js)
+ 
+ "font4": font for bottom side title (could be omitted, then use default size for side title on config.js)
+ 
  
  Front image files should be placed in data/images
  
@@ -30,3 +49,5 @@ Json format:
 
 
 It is possible for some settings to be changed in config.js
+
+To execute application, use command "node index.js"
