@@ -97,10 +97,10 @@ const addText = (
     h = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
     w = metrics.width;
     if (i == 0) base_y = y1 + h;
-    x = i == 0 ? x : x + prev_w + textSetting1.spacing;
+    x = i == 0 ? x : x + prev_w + -size1 * 0.17; //textSetting1.spacing
     y = i == 0 ? y1 : base_y - h - i * 0.5;
     prev_w = w;
-    ctx.transform(1, -0.02, -0.1, 1, x, y);
+    ctx.transform(0.76, -0.03, 0, 1, x, y);
     ctx.fillText(letters[i], 0, 0);
     ctx.restore();
   }
@@ -123,10 +123,10 @@ const addText = (
     h = metrics.actualBoundingBoxAscent + metrics.actualBoundingBoxDescent;
     w = metrics.width;
     if (i == 0) base_y = y2;
-    x = i == 0 ? x : x + prev_w + textSetting2.spacing;
-    y = i == 0 ? y2 : base_y - i * 0.3;
+    x = i == 0 ? x : x + prev_w + -size2 * 0.17; //textSetting2.spacing
+    y = i == 0 ? y2 : base_y - i * 0.1;
     prev_w = w;
-    ctx.transform(1, 0.01, -0.1, 1, x, y);
+    ctx.transform(0.76, -0.01, 0, 1, x, y);
     ctx.fillText(letters[i], 0, 0);
     ctx.restore();
   }
@@ -140,7 +140,7 @@ const addRotatedText = (textSetting, _sig, size, degree) => {
   ctx.save();
   ctx.translate(textSetting.xPos, textSetting.yPos);
   ctx.rotate((2 * Math.PI * degree) / 360);
-  ctx.transform(1, 0.0, -0.1, 0.8, 0, 0);
+  ctx.transform(1.08, 0.0, -0.1, 0.67, 0, 0);
   ctx.fillText(_sig, 0, 0);
   ctx.restore();
 };
@@ -197,7 +197,7 @@ const drawLogo = (_logo) => {
 
 const drawSideLogo = (_logo) => {
   ctx.save();
-  ctx.transform(0.8, 0.08, -0.01, 1, 0, 0);
+  ctx.transform(0.76, 0.08, -0.01, 1, 0, 0);
   ctx.drawImage(
     _logo.loadedImage,
     sideLogoSetting.xPos,

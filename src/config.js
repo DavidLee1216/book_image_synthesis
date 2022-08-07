@@ -14,30 +14,30 @@ const backgroundSetting = {
 
 const text1Setting = {
   color: "#000000",
-  size: 70,
+  size: 90,
   xPos: 74,
   yPos: 1216,
   align: "left",
   baseline: "top",
   weight: "bold",
   family: "Bahnschrift",
-  spacing: -1,
+  spacing: -17,
 };
 const text2Setting = {
   color: "#000000",
-  size: 64,
-  xPos: 68,
-  yPos: 1352,
+  size: 80,
+  xPos: 74,
+  yPos: 1350,
   align: "left",
   baseline: "top",
   weight: "bold",
   family: "Bahnschrift",
-  spacing: -1,
+  spacing: -17,
 };
 const text3Setting = {
   color: "#ffffff",
   size: 80,
-  xPos: 930,
+  xPos: 950,
   yPos: 970,
   align: "left",
   baseline: "top",
@@ -46,8 +46,8 @@ const text3Setting = {
 };
 const text4Setting = {
   color: "#ffffff",
-  size: 60,
-  xPos: 1035,
+  size: 64,
+  xPos: 1025,
   yPos: 970,
   align: "left",
   baseline: "top",
@@ -69,10 +69,10 @@ const imageSetting = {
 };
 
 const sideLogoSetting = {
-  width: 250,
-  height: 250,
-  xPos: 1180,
-  yPos: 1100,
+  width: 300,
+  height: 300,
+  xPos: 1220,
+  yPos: 1120,
 };
 
 module.exports = {
